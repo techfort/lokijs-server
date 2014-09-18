@@ -1,0 +1,19 @@
+{
+  "name": "lokijs-server",
+  "version": "0.0.1",
+  "description": "tcp wrapper for lokijs",
+  "main": "index.js",
+  "dependencies": {
+    "lokijs": "~0.1.28"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:techfort/lokijs-server.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
