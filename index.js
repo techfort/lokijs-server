@@ -1,4 +1,4 @@
-var lokiServer = require('./server.js'),
+var lokiServer = require('./server/server.js'),
 	options = {},
 	server,
 	i = 2,
