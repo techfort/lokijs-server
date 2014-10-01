@@ -3,6 +3,10 @@ var Config = require('../config/config.js');
 function Utils(debugLevel) {
 	var debug = debugLevel || 1,
 		self = this;
+	this.info = function () {
+		if (debug < 4) return;
+		console.log.apply(null, Array.prototype.slice.call(arguments));
+	}
 	this.log = function () {
 		if (debug < 3) return;
 		console.log.apply(null, Array.prototype.slice.call(arguments));
@@ -22,6 +26,7 @@ function Utils(debugLevel) {
 				data: output
 			};
 		} catch (err) {
+			self.log('Parsing bombed out...');
 			self.error(err);
 			return {
 				status: 'fail'

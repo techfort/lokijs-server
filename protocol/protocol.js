@@ -10,29 +10,42 @@ function async(func, callback) {
 function LokiProtocol(db) {
 	var self = this;
 	this.process = function (message, callback) {
-		switch (message) {
-		case 1000:
-			var coll = message.collection,
-				obj = message.obj;
+		var coll = message.collection,
+			op = parseInt(message.op),
+			obj = message.obj,
+			result;
+		switch (op) {
+		case ops.OP_QUERY:
 			async(function () {
-				(db.getCollection(coll)).insert(obj);
-			}, callback);
+				result = (db.getCollection(coll)).insert(obj);
+			}, function () {
 
+			});
+			//async(db.saveToDisk, null);
+			return result;
 			break;
-		case 2000:
+		case ops.OP_QUERY:
 			break;
-		case 2001:
+		case ops.OP_UPDATE:
 			break;
-		case 2002:
+		case ops.OP_UPDATE_ONE:
 			break;
-		case 3000:
+		case ops.OP_UPDATE_MANY:
 			break;
-		case 4000:
+		case ops.OP_INSERT:
+			db.logger.info('OP_INSERT', obj);
+			result = (db.getCollection(coll)).insert(obj);
+			//async(db.saveToDisk, null);
+			return result;
 			break;
-		case 4001:
+		case ops.OP_DELETE:
 			break;
-		case 5000:
+		case ops.OP_SOFT_DELETE:
+			break;
+		case ops.OP_CREATE_VIEW:
 			break;
 		}
 	};
 }
+
+module.exports = LokiProtocol;

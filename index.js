@@ -1,4 +1,5 @@
 var lokiServer = require('./server/server.js'),
+	loki = require('lokijs'),
 	options = {},
 	server,
 	i = 2,
@@ -27,4 +28,6 @@ if (process.argv.length > 2) {
 		}
 	}
 	console.log(options);
+	server = new lokiServer(loki, options);
+	server.start();
 }
