@@ -44,6 +44,14 @@ function LokiProtocol(db) {
 			break;
 		case ops.OP_CREATE_VIEW:
 			break;
+		case ops.OP_CREATE_COLLECTION:
+			db.logger.info('OP_CREATE_COLLECTION', obj);
+			db.addCollection(obj.collection, obj.objType);
+			return {
+				status: 'ok',
+				message: 'collection created'
+			};
+			break;
 		}
 	};
 }
